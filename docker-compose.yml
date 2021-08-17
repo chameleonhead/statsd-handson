@@ -4,3 +4,10 @@ services:
     image: statsd/statsd
     ports:
       - 8125:8125/udp
+    volumes:
+      - ./docker/statsd/config.json:/usr/src/app/config.js
+  # graphiteapp:
+  #   image: graphiteapp/graphite-statsd
+  #   ports:
+  #     - 8080:80
+  #     - 8125:8125/udp
