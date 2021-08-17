@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+  app:
+    image: mcr.microsoft.com/dotnet/sdk:5.0
+    command: dotnet run
+    working_dir: /app
+    volumes:
+      - ./ConsoleApp1/ConsoleApp1:/app
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
