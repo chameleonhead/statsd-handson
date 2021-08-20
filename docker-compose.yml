@@ -6,9 +6,15 @@ services:
     working_dir: /app
     volumes:
       - ./ConsoleApp1/ConsoleApp1:/app
+    ports:
+      - 1234:1234
   prometheus:
     image: prom/prometheus
     ports:
       - 9090:9090
     volumes:
       - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
