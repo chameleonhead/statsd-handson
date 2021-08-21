@@ -14,6 +14,10 @@ services:
       - 9090:9090
     volumes:
       - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
   grafana:
     image: grafana/grafana
     ports:
