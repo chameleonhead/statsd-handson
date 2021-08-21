@@ -1,13 +1,23 @@
-version: '3.5'
-services: 
-  statsd:
-    image: statsd/statsd
-    ports:
-      - 8125:8125/udp
-    volumes:
-      - ./docker/statsd/config.json:/usr/src/app/config.js
-  # graphiteapp:
-  #   image: graphiteapp/graphite-statsd
+version: "3.5"
+services:
+  # statsd:
+  #   image: statsd/statsd
   #   ports:
-  #     - 8080:80
   #     - 8125:8125/udp
+  #   volumes:
+  #     - ./docker/statsd/config.json:/usr/src/app/config.js
+  app:
+    image: mcr.microsoft.com/dotnet/sdk:5.0
+    command: dotnet run
+    working_dir: /app
+    volumes:
+      - ./ConsoleApp1/ConsoleApp1:/app
+  graphiteapp:
+    image: graphiteapp/graphite-statsd
+    ports:
+      - 8080:80
+      - 8125:8125/udp
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
